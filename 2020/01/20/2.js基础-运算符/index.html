@@ -21,7 +21,7 @@
   <meta name="description" content="算术运算符 字符相加 1234567891011121314151617181920  &#x2F;&#x2F; 隐式转换 多种数据类型不同时，进行运算需要将这些数据转换为相同类型才能运算，这个过程就是隐式转换        var a&#x3D;&quot;a&quot;;        var b&#x3D;&quot;b&quot;;        var b&#x3D;3;        var b&#x3D;true;        var b&#x3D;false;        var b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2.javascript 运算符">
-<meta property="og:url" content="http://yoursite.com/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
+<meta property="og:url" content="https://cooli-willson.github.io/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
 <meta property="og:site_name" content="Wilson&#39;bolg">
 <meta property="og:description" content="算术运算符 字符相加 1234567891011121314151617181920  &#x2F;&#x2F; 隐式转换 多种数据类型不同时，进行运算需要将这些数据转换为相同类型才能运算，这个过程就是隐式转换        var a&#x3D;&quot;a&quot;;        var b&#x3D;&quot;b&quot;;        var b&#x3D;3;        var b&#x3D;true;        var b&#x3D;false;        var b">
 <meta property="og:locale" content="zh_CN">
@@ -32,7 +32,7 @@
 <meta property="article:tag" content="运算符">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
+  <link rel="canonical" href="https://cooli-willson.github.io/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Wilson&#39;bolg" type="application/atom+xml">
   
@@ -148,16 +148,6 @@
             <i class="icon icon-project"></i>
             
             <span class="menu-title">项目</span>
-          </a>
-        </li>
-        
-        
-        <li class="menu-item menu-item-links">
-          <a href="/links">
-            
-            <i class="icon icon-friendship"></i>
-            
-            <span class="menu-title">友链</span>
           </a>
         </li>
         
@@ -416,8 +406,8 @@
 </code></pre>
 <p><strong>辅助运算符和相等关系运算符</strong></p>
 <blockquote>
-<p>= 赋值<br />
-== 比较<br />
+<p>= 赋值<br>
+== 比较<br>
 === 精确比较   比较值和类型</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"1"</span>==<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">""</span>==<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span>==<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">""</span>==<span class="literal">false</span>);</span><br><span class="line"><span class="number">0</span>==<span class="string">""</span>== <span class="literal">false</span></span><br><span class="line"><span class="literal">undefined</span>==<span class="literal">null</span> </span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span>==<span class="literal">null</span>);<span class="comment">//判读空的结果是否相同</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span>==<span class="string">""</span>);<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span>==<span class="number">0</span>);<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span>==<span class="literal">false</span>);<span class="comment">//false</span></span><br><span class="line"><span class="comment">// NaN永远不和任何内容相等，包括NaN</span></span><br><span class="line"><span class="keyword">var</span> a=<span class="string">"a"</span>;</span><br><span class="line"><span class="keyword">if</span>(a==<span class="literal">NaN</span>)&#123;</span><br><span class="line">    <span class="comment">// 判断a是否是NaN</span></span><br><span class="line">    <span class="comment">// isNaN()里面的内容会自动隐式转换为数值</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">isNaN</span>(a))&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"非数值"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">if</span>(a==<span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="comment">// undefined null</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"aa"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(a==<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// a是0 false ""</span></span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">var</span> obj=&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">var</span> obj1=&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="built_in">console</span>.log(obj==obj1);</span><br><span class="line">    <span class="comment">// 引用地址不同</span></span><br><span class="line">    <span class="built_in">console</span>.log([]==[]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"1"</span>==<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"1"</span>===<span class="number">1</span>);<span class="comment">//比较值和类型</span></span><br><span class="line">    <span class="comment">// != 不相等</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">0</span>!=<span class="literal">null</span>);</span><br><span class="line">    <span class="built_in">console</span>.log([]!=[]);</span><br></pre></td></tr></table></figure>
@@ -436,7 +426,7 @@
 <ul>
 <li>&amp;&amp; 运算的两端，如果有一端转换为布尔值是false，就把这个值返回出去（值是什么就返回什么，不是返回false）</li>
 <li>如果两端转换为布尔值都是true，就返回&amp;&amp;运算符右侧的值，先运行左侧再运行右侧</li>
-<li>如果左侧运算的结果是false，直接返回左侧值，不运算右侧<br />
+<li>如果左侧运算的结果是false，直接返回左侧值，不运算右侧<br>
 + 如果||的左侧的结果是ture，就直接返回左侧，不运算右侧，熔断</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">a=a-- &amp;&amp; ++a;</span><br><span class="line">s=--a &amp;&amp; ++a;</span><br><span class="line">a=a++ &amp;&amp; --a;</span><br><span class="line"><span class="built_in">console</span>.log(s,a);</span><br><span class="line"><span class="comment">// &amp;&amp; 运算的两端，如果有一端转换为布尔值是false，就把这个值返回出去（值是什么就返回什么，不是返回false）</span></span><br><span class="line"><span class="comment">// 如果两端转换为布尔值都是true，就返回&amp;&amp;运算符右侧的值，先运行左侧再运行右侧</span></span><br><span class="line"><span class="comment">// 如果左侧运算的结果是false，直接返回左侧值，不运算右侧</span></span><br><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">a=--a || a++;</span><br><span class="line">a=a-- || a++;</span><br><span class="line"><span class="comment">// 如果||的左侧的结果是ture，就直接返回左侧，不运算右侧，熔断</span></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
@@ -457,7 +447,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/" title="2.javascript 运算符" target="_blank" rel="external">http://yoursite.com/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/</a>
+      <a href="https://cooli-willson.github.io/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/" title="2.javascript 运算符" target="_blank" rel="external">https://cooli-willson.github.io/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -490,6 +480,8 @@
     
   <section id="comments">
   	
+      <div id="vcomments"></div>
+    
   </section>
 
 
@@ -633,7 +625,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 (function ($) {
     $('.search-form').on('submit', function (e) {
         var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:yoursite.com ' + keyword;
+        window.location = 'https://www.baidu.com/s?wd=site:cooli-willson.github.io ' + keyword;
         return false;
     });
 })(jQuery);
@@ -650,6 +642,31 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
    
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
 
 
   <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
