@@ -2,58 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/01/20/1.js%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20copy/</loc>
-    
-    <lastmod>2020-01-20T15:16:52.981Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
-    
-    <lastmod>2020-01-20T15:05:01.520Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/20/1.js%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
-    
-    <lastmod>2020-01-20T14:01:10.350Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2020/01/19/pure%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
     
-    <lastmod>2020-01-19T09:10:55.345Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E6%9E%84/</loc>
-    
-    <lastmod>2020-01-19T08:49:27.895Z</lastmod>
+    <lastmod>2020-01-20T17:14:37.980Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/01/19/%E9%80%9A%E8%BF%87%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E5%8D%95%E5%8A%9F%E8%83%BD/</loc>
     
-    <lastmod>2020-01-19T08:04:27.019Z</lastmod>
+    <lastmod>2020-01-20T17:14:20.222Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/2020/01/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E6%9E%84/</loc>
     
-    <lastmod>2020-01-19T07:40:21.463Z</lastmod>
+    <lastmod>2020-01-20T17:14:16.491Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/20/2.js%E5%9F%BA%E7%A1%80-%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
+    
+    <lastmod>2020-01-20T17:14:12.032Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/20/1.js%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
+    
+    <lastmod>2020-01-20T17:14:08.763Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/repository/index.html</loc>
+    
+    <lastmod>2020-01-20T17:07:20.316Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/index.html</loc>
     
-    <lastmod>2020-01-19T07:36:05.771Z</lastmod>
+    <lastmod>2020-01-20T16:39:48.082Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/links/index.html</loc>
+    
+    <lastmod>2020-01-20T16:36:03.440Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/404.html</loc>
+    
+    <lastmod>2020-01-20T16:36:03.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2020-01-20T16:36:03.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/books/index.html</loc>
+    
+    <lastmod>2020-01-20T16:36:03.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2020-01-20T16:34:58.656Z</lastmod>
     
   </url>
   
