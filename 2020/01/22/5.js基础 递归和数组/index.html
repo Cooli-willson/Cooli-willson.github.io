@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>1.js基础 递归和数组 | Wilson&#39;blog</title>
+  <meta name="description" content="5.js基础 递归和数组  递归 递归与回调函数的使用 123456789101112131415161718 function fn1()&amp;#123;            i++;            &#x2F;&#x2F; console.log(i);            if(i&lt;4) fn2();                console.log(i);         &amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.js基础 递归和数组">
+<meta property="og:url" content="https://cooli-willson.github.io/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="Wilson&#39;bolg">
+<meta property="og:description" content="5.js基础 递归和数组  递归 递归与回调函数的使用 123456789101112131415161718 function fn1()&amp;#123;            i++;            &#x2F;&#x2F; console.log(i);            if(i&lt;4) fn2();                console.log(i);         &amp;#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-22T15:12:26.387Z">
+<meta property="article:modified_time" content="2020-01-22T15:13:33.883Z">
+<meta property="article:author" content="Wilson">
+<meta property="article:tag" content="js基础">
+<meta property="article:tag" content="递归">
+<meta property="article:tag" content="数组">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://cooli-willson.github.io/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Wilson&#39;bolg" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://cooli-willson.github.io/" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">wilson</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome Wilson'blog</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pure%E4%B8%BB%E9%A2%98/">pure主题</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/hello-world/" style="font-size: 13px;">hello world</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 14px;">js基础</a> <a href="/tags/pure/" style="font-size: 13px;">pure</a> <a href="/tags/%E5%87%BD%E6%95%B0/" style="font-size: 13px;">函数</a> <a href="/tags/%E5%8A%9F%E8%83%BD/" style="font-size: 13px;">功能</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 13px;">对象</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13.33px;">循环</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 13px;">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 13.67px;">数组</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E5%99%A8/" style="font-size: 13px;">计算器</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 13px;">运算符</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 13px;">递归</a> <a href="/tags/%E9%87%8D%E6%9E%84/" style="font-size: 13px;">重构</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/" class="title">1.js基础 递归和数组</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-22T15:12:26.387Z" itemprop="datePublished">2020-01-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/22/%E5%9C%A8%E8%A1%A8%E6%A0%BC%E4%B8%AD%E6%8F%92%E5%85%A5%E6%96%87%E5%AD%97%E5%92%8C%E5%9B%BE%E7%89%87/" class="title">在表格中插入文字和图片</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-22T14:58:53.660Z" itemprop="datePublished">2020-01-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/22/%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8%E5%8A%9F%E8%83%BD/" class="title">实现简单的计算器功能</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-22T14:49:54.302Z" itemprop="datePublished">2020-01-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/22/4.js%E5%9F%BA%E7%A1%80-%E5%87%BD%E6%95%B0/" class="title">4.javascript 基础-函数</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-22T14:20:23.154Z" itemprop="datePublished">2020-01-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/22/3.js%E5%9F%BA%E7%A1%80-%E5%BE%AA%E7%8E%AF%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="title">3.js基础-循环和对象</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-22T07:51:40.150Z" itemprop="datePublished">2020-01-22</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-5.js基础 递归和数组" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      1.js基础 递归和数组
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/" class="article-date">
+	  <time datetime="2020-01-22T15:12:26.387Z" itemprop="datePublished">2020-01-22</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/js%E5%9F%BA%E7%A1%80/" rel="tag">js基础</a>, <a class="article-tag-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a>, <a class="article-tag-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 867(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="5js基础-递归和数组"><a class="markdownIt-Anchor" href="#5js基础-递归和数组"></a> 5.js基础 递归和数组</h1>
+<h3 id="递归"><a class="markdownIt-Anchor" href="#递归"></a> 递归</h3>
+<p><strong>递归与回调函数的使用</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="comment">// console.log(i);</span></span><br><span class="line">            <span class="keyword">if</span>(i&lt;<span class="number">4</span>) fn2();    </span><br><span class="line">            <span class="built_in">console</span>.log(i); </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="comment">// console.log(i);</span></span><br><span class="line">            <span class="keyword">if</span>(i&lt;<span class="number">4</span>) fn3();  </span><br><span class="line">            <span class="built_in">console</span>.log(i);   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="comment">// console.log(i);</span></span><br><span class="line">            <span class="comment">// if(i&lt;4) fn(); </span></span><br><span class="line">            <span class="built_in">console</span>.log(i); </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>浅复制与深层复制</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">            a: <span class="number">1</span>,</span><br><span class="line">            b: <span class="number">2</span>,</span><br><span class="line">            c: &#123;</span><br><span class="line">                a: <span class="number">3</span>,</span><br><span class="line">                b: <span class="number">4</span>,</span><br><span class="line">                c: &#123;</span><br><span class="line">                    a: <span class="number">5</span>,</span><br><span class="line">                    b: <span class="number">6</span>,</span><br><span class="line">                    c: &#123;</span><br><span class="line">                        a: <span class="number">7</span>,</span><br><span class="line">                        b: <span class="number">8</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">         <span class="keyword">var</span> obj1=&#123;&#125;;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> obj)&#123;</span><br><span class="line">             obj1[prop]=obj[prop];</span><br><span class="line">         &#125;</span><br><span class="line">         obj.c.a=<span class="number">10</span>;</span><br><span class="line">         <span class="built_in">console</span>.log(obj1);</span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">cloneObj</span>(<span class="params">target,source</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> source)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(<span class="keyword">typeof</span> source[prop]===<span class="string">"object"</span> &amp;&amp; source[prop]!==<span class="literal">null</span>)&#123;</span><br><span class="line">                            target[prop]=&#123;&#125;;</span><br><span class="line">                            cloneObj(target[prop],source[prop])</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            target[prop]=source[prop];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> target;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 同样的属性 使用引用关系的方式深度遍历</span></span><br><span class="line">            <span class="keyword">var</span> o = source.c;</span><br><span class="line">            target.c = &#123;&#125;;</span><br><span class="line">            <span class="keyword">var</span> o1 = target.c;</span><br><span class="line">            <span class="keyword">while</span> (o) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> o) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="keyword">typeof</span> o[prop] !== <span class="string">"object"</span> || o[prop] === <span class="literal">null</span>) &#123;</span><br><span class="line">                        o1[prop] = o[prop];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                o = o.c;</span><br><span class="line">                <span class="keyword">if</span> (o) &#123;</span><br><span class="line">                    o1.c = &#123;&#125;;</span><br><span class="line">                    o1 = o1.c;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> target</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line">        obj1 = cloneObj(obj1, obj);</span><br><span class="line">        <span class="comment">// obj.c.c.a = 10;</span></span><br><span class="line">        <span class="built_in">console</span>.log(obj1);</span><br></pre></td></tr></table></figure>
+<h3 id="数组的创建"><a class="markdownIt-Anchor" href="#数组的创建"></a> 数组的创建</h3>
+<p><strong>什么是数组</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[];</span><br><span class="line">        <span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">        <span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="built_in">Object</span>([]);</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// 数组是一个引用列表</span></span><br><span class="line">        <span class="comment">// 列表：顺序，只有值，紧密，速度慢</span></span><br><span class="line">        <span class="keyword">var</span> arr=[<span class="number">3</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">9</span>];</span><br><span class="line">        <span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+<p><strong>字面量创建数组</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">        <span class="comment">// arr是数组  1是索引值（下标）  arr[1]元素（下标变量）</span></span><br><span class="line">        <span class="built_in">console</span>.log(arr[<span class="number">1</span>]);</span><br><span class="line">        arr[<span class="number">1</span>]=<span class="number">10</span>;<span class="comment">//可以修改下标变量的结果</span></span><br><span class="line">        <span class="built_in">console</span>.log(arr[<span class="number">1</span>]);</span><br><span class="line">        arr[<span class="number">5</span>]=<span class="number">10</span>;</span><br><span class="line">        arr[<span class="number">7</span>]=<span class="number">10</span>;<span class="comment">//数组的紧密型，如果中间空余，就会自动补充空元素</span></span><br></pre></td></tr></table></figure>
+<p><strong>数组的使用与特性</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历内容较多，当添加删除元素时，因为数组紧密型，速度变慢，尤其前面插入和删除</span></span><br><span class="line">        arr[<span class="number">-1</span>]=<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(arr);</span><br><span class="line">        <span class="comment">// length  数组得长度</span></span><br><span class="line">        <span class="built_in">console</span>.log(arr.length);<span class="comment">//表示当前数组得索引下标的最大值+1，因为从0开始</span></span><br><span class="line">        <span class="comment">// 当添加不是索引数据（0开始），-1，不会累计在长度中，而作为对象的key，value增加内容</span></span><br><span class="line">        arr[<span class="string">"6"</span>]=<span class="number">10</span>;</span><br><span class="line">        arr[arr.length]=<span class="number">10</span>;<span class="comment">//在数组的尾部添加一个新元素</span></span><br><span class="line">        <span class="comment">// 每次添加元素后，长度会发生改变，length会变化的，因此下面这句不会修改最后一个元素，而是添加一个新元素</span></span><br><span class="line">        arr[arr.length]=<span class="number">11</span>;<span class="comment">//在数组的尾部添加一个新元素</span></span><br><span class="line">        arr.length=<span class="number">10</span>;<span class="comment">//如果直接设置数组的长度，长度大于原来的数组的长度时，添加空元素，让数量达到这个设置的值</span></span><br><span class="line">        arr.length=arr.length<span class="number">-1</span>;<span class="comment">//如果长度比原来少一个，就会删除最尾部元素</span></span><br><span class="line">        arr.length--;</span><br><span class="line">        arr.length=<span class="number">0</span>;<span class="comment">//表示清空数组</span></span><br><span class="line">        arr=[];<span class="comment">//引用地址变化了</span></span><br><span class="line">        arr.length=<span class="number">-2</span>;<span class="comment">//数组的长度不能为负值</span></span><br><span class="line">        arr.length=<span class="string">"a"</span>;<span class="comment">//如果给的不是数值，会隐式转换为数值，如果值是NaN，就会报错</span></span><br><span class="line">        <span class="built_in">console</span>.log(arr,arr.length);</span><br><span class="line">            <span class="comment">// 构造函数创建</span></span><br><span class="line">            <span class="comment">// 构造函数实例化对象</span></span><br><span class="line">            <span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(arr);</span><br><span class="line">            <span class="comment">// 字符串转数组类型</span></span><br><span class="line">            <span class="keyword">var</span> arr=<span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(arr);</span><br><span class="line">            <span class="comment">// 数组通过构造函数创建时，如果只有一个参数，并且参数是正整数，</span></span><br><span class="line">            <span class="comment">// 这个数就是数组的长度，而不作为数组的新元素</span></span><br><span class="line">            <span class="comment">// 如果是数字，但不是正整数，都会报错</span></span><br><span class="line">            <span class="comment">// 如果不是数字，则作为数组的第一个元素添加</span></span><br><span class="line">            <span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"3"</span>);</span><br><span class="line">            <span class="keyword">var</span> arr=<span class="built_in">Array</span>(<span class="number">5</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://cooli-willson.github.io/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/" title="1.js基础 递归和数组" target="_blank" rel="external">https://cooli-willson.github.io/2020/01/22/5.js%E5%9F%BA%E7%A1%80%20%E9%80%92%E5%BD%92%E5%92%8C%E6%95%B0%E7%BB%84/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://cooli-willson.github.io/" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://cooli-willson.github.io/" target="_blank"><span class="text-dark">wilson</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>h5前端工作者</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/01/22/%E5%9C%A8%E8%A1%A8%E6%A0%BC%E4%B8%AD%E6%8F%92%E5%85%A5%E6%96%87%E5%AD%97%E5%92%8C%E5%9B%BE%E7%89%87/" title="在表格中插入文字和图片"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2020 Wilson
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:cooli-willson.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>
