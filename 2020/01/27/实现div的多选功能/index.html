@@ -17,18 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>404 Not Found：该页无法显示 | Wilson&#39;blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="404 Not Found：该页无法显示">
-<meta property="og:url" content="https://cooli-willson.github.io/404.html">
+  <title>div的多选功能的实现 | Wilson&#39;blog</title>
+  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283&#x2F;*  var pre;     init();     function init(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="div的多选功能的实现">
+<meta property="og:url" content="https://cooli-willson.github.io/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="Wilson&#39;bolg">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283&#x2F;*  var pre;     init();     function init(">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-20T16:36:03.439Z">
-<meta property="article:modified_time" content="2020-01-20T16:36:03.439Z">
+<meta property="article:published_time" content="2020-01-27T07:57:30.333Z">
+<meta property="article:modified_time" content="2020-01-27T07:59:58.819Z">
 <meta property="article:author" content="Wilson">
+<meta property="article:tag" content="js基础">
+<meta property="article:tag" content="功能">
+<meta property="article:tag" content="事件">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://cooli-willson.github.io/404.html">
+  <link rel="canonical" href="https://cooli-willson.github.io/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Wilson&#39;bolg" type="application/atom+xml">
   
@@ -309,14 +314,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-实现div的多选功能" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      404 Not Found：该页无法显示
+      div的多选功能的实现
     </h1>
   
 
@@ -324,12 +329,22 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/404.html" class="article-date">
-	  <time datetime="2020-01-20T16:36:03.439Z" itemprop="datePublished">2020-01-21</time>
+	<a href="/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/" class="article-date">
+	  <time datetime="2020-01-27T07:57:30.333Z" itemprop="datePublished">2020-01-27</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/js%E5%9F%BA%E7%A1%80/" rel="tag">js基础</a>, <a class="article-tag-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a>, <a class="article-tag-link" href="/tags/%E5%8A%9F%E8%83%BD/" rel="tag">功能</a>
+  </span>
+
 
         
 	<span class="article-read hidden-xs">
@@ -340,10 +355,10 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/404.html#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 0(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 262(字)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
@@ -353,8 +368,7 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <script type="text/javascript" src="//www.qq.com/404/search_children.js" charset="utf-8" homepageurl="<%- config.url %>" homepagename="回到我的主页"></script>
-
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  var pre;</span></span><br><span class="line"><span class="comment">     init();</span></span><br><span class="line"><span class="comment">     function init()&#123;</span></span><br><span class="line"><span class="comment">         var con=document.createDocumentFragment();</span></span><br><span class="line"><span class="comment">         for(var i=0;i&lt;10;i++)&#123;</span></span><br><span class="line"><span class="comment">             var div=document.createElement("div");</span></span><br><span class="line"><span class="comment">             Object.assign(div.style,&#123;</span></span><br><span class="line"><span class="comment">                 width:"50px",</span></span><br><span class="line"><span class="comment">                 height:"50px",</span></span><br><span class="line"><span class="comment">                 backgroundColor:(function()&#123;</span></span><br><span class="line"><span class="comment">                     var col="#";</span></span><br><span class="line"><span class="comment">                     for(var j=0;j&lt;6;j++)&#123;</span></span><br><span class="line"><span class="comment">                         col+=Math.floor(Math.random()*16).toString(16);</span></span><br><span class="line"><span class="comment">                     &#125;</span></span><br><span class="line"><span class="comment">                     return col;</span></span><br><span class="line"><span class="comment">                 &#125;)(),</span></span><br><span class="line"><span class="comment">                 position:"absolute",</span></span><br><span class="line"><span class="comment">                 left:Math.floor(Math.random()*1400)+"px",</span></span><br><span class="line"><span class="comment">                 top:Math.floor(Math.random()*550)+"px"</span></span><br><span class="line"><span class="comment">             &#125;);</span></span><br><span class="line"><span class="comment">             con.appendChild(div);</span></span><br><span class="line"><span class="comment">             div.addEventListener("click",clickHandler);</span></span><br><span class="line"><span class="comment">         &#125;</span></span><br><span class="line"><span class="comment">         document.body.appendChild(con);</span></span><br><span class="line"><span class="comment">         </span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     function clickHandler(e)&#123;</span></span><br><span class="line"><span class="comment">         if(this===pre)   preChange();</span></span><br><span class="line"><span class="comment">         else   preChange(this);</span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     function preChange(elem)&#123;</span></span><br><span class="line"><span class="comment">         if(pre)pre.style.border="none";</span></span><br><span class="line"><span class="comment">         pre=null;</span></span><br><span class="line"><span class="comment">         if(!elem) return;</span></span><br><span class="line"><span class="comment">         pre=elem;</span></span><br><span class="line"><span class="comment">         pre.style.border="2px solid #000000"</span></span><br><span class="line"><span class="comment">     &#125; */</span></span><br><span class="line">     </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="keyword">var</span> preList=[];</span><br><span class="line">     init();</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="keyword">var</span> con=<span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">             <span class="keyword">var</span> div=<span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">             <span class="built_in">Object</span>.assign(div.style,&#123;</span><br><span class="line">                 width:<span class="string">"50px"</span>,</span><br><span class="line">                 height:<span class="string">"50px"</span>,</span><br><span class="line">                 backgroundColor:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                     <span class="keyword">var</span> col=<span class="string">"#"</span>;</span><br><span class="line">                     <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;<span class="number">6</span>;j++)&#123;</span><br><span class="line">                         col+=<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">16</span>).toString(<span class="number">16</span>);</span><br><span class="line">                     &#125;</span><br><span class="line">                     <span class="keyword">return</span> col;</span><br><span class="line">                 &#125;)(),</span><br><span class="line">                 position:<span class="string">"absolute"</span>,</span><br><span class="line">                 left:<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">1400</span>)+<span class="string">"px"</span>,</span><br><span class="line">                 top:<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">550</span>)+<span class="string">"px"</span></span><br><span class="line">             &#125;);</span><br><span class="line">             con.appendChild(div);</span><br><span class="line">             div.addEventListener(<span class="string">"click"</span>,clickHandler);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="built_in">document</span>.body.appendChild(con);</span><br><span class="line">         </span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">         preChange(<span class="keyword">this</span>,e.ctrlKey);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">preChange</span>(<span class="params">elem,bool</span>)</span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(preList.length&gt;<span class="number">0</span> &amp;&amp; !bool)&#123;</span><br><span class="line">             preList.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">                 item.style.border=<span class="string">"none"</span>;</span><br><span class="line">             &#125;)</span><br><span class="line">             preList.length=<span class="number">0</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         preList.push(elem);</span><br><span class="line">         elem.style.border=<span class="string">"2px solid #000000"</span></span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -363,7 +377,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://cooli-willson.github.io/404.html" title="404 Not Found：该页无法显示" target="_blank" rel="external">https://cooli-willson.github.io/404.html</a>
+      <a href="https://cooli-willson.github.io/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/" title="div的多选功能的实现" target="_blank" rel="external">https://cooli-willson.github.io/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -394,12 +408,32 @@
   </article>
   
     
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
 
   
 </div>
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/01/27/%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD/" title="拖拽div"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/01/27/9.%E4%BA%8B%E4%BB%B6/" title="9.事件"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -535,6 +569,39 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '3RekpJKpFX6SzOjLYMI6l4zi-gzGzoHsz',
+    appKey: 'Aeo3mH4zkWGoNQNCjQYlswop',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
