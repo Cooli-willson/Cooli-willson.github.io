@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>10.Event事件 | Wilson&#39;blog</title>
+  <meta name="description" content="Event事件   Event事件类型  change   修改事件 error    错误事件 load    加载事件 reset  重设事件 resize  重新修改大小事件 select  选择文字事件 submit  提交事件 unload  卸载事件 scroll  滚动条事件    鼠标事件    MouseEvent–&gt;UIEvent–&gt;Event  Event称为事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.Event事件">
+<meta property="og:url" content="https://cooli-willson.github.io/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Wilson&#39;bolg">
+<meta property="og:description" content="Event事件   Event事件类型  change   修改事件 error    错误事件 load    加载事件 reset  重设事件 resize  重新修改大小事件 select  选择文字事件 submit  提交事件 unload  卸载事件 scroll  滚动条事件    鼠标事件    MouseEvent–&gt;UIEvent–&gt;Event  Event称为事">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-27T09:44:31.705Z">
+<meta property="article:modified_time" content="2020-01-27T09:47:30.248Z">
+<meta property="article:author" content="Wilson">
+<meta property="article:tag" content="js基础">
+<meta property="article:tag" content="Event事件">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://cooli-willson.github.io/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Wilson&#39;bolg" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body class="main-center theme-green" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://cooli-willson.github.io/" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">wilson</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome Wilson'blog</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pure%E4%B8%BB%E9%A2%98/">pure主题</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/BOM/" style="font-size: 13px;">BOM</a> <a href="/tags/DOM%E7%9A%84%E5%B1%9E%E6%80%A7/" style="font-size: 13px;">DOM的属性</a> <a href="/tags/Event%E4%BA%8B%E4%BB%B6/" style="font-size: 13px;">Event事件</a> <a href="/tags/hello-world/" style="font-size: 13px;">hello world</a> <a href="/tags/js%E5%9F%BA%E7%A1%80/" style="font-size: 14px;">js基础</a> <a href="/tags/pure/" style="font-size: 13px;">pure</a> <a href="/tags/%E4%B8%AD%E6%96%87%E6%97%B6%E9%97%B4/" style="font-size: 13px;">中文时间</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 13.25px;">事件</a> <a href="/tags/%E5%87%BD%E6%95%B0/" style="font-size: 13px;">函数</a> <a href="/tags/%E5%8A%9F%E8%83%BD/" style="font-size: 13.75px;">功能</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 13.25px;">字符串</a> <a href="/tags/%E5%AF%B9%E8%B1%A1/" style="font-size: 13px;">对象</a> <a href="/tags/%E5%BE%AA%E7%8E%AF/" style="font-size: 13.25px;">循环</a> <a href="/tags/%E6%8B%96%E6%8B%BD/" style="font-size: 13px;">拖拽</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" style="font-size: 13px;">数据类型</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 13.5px;">数组</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E5%99%A8/" style="font-size: 13px;">计算器</a> <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/" style="font-size: 13px;">运算符</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 13px;">递归</a> <a href="/tags/%E9%87%8D%E6%9E%84/" style="font-size: 13px;">重构</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/" class="title">10.Event事件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-27T09:44:31.705Z" itemprop="datePublished">2020-01-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/27/%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD/" class="title">拖拽div</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-27T08:10:52.536Z" itemprop="datePublished">2020-01-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%8A%9F%E8%83%BD/">功能</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/27/%E5%AE%9E%E7%8E%B0div%E7%9A%84%E5%A4%9A%E9%80%89%E5%8A%9F%E8%83%BD/" class="title">div的多选功能的实现</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-27T07:57:30.333Z" itemprop="datePublished">2020-01-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/27/9.%E4%BA%8B%E4%BB%B6/" class="title">9.事件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-27T07:42:18.319Z" itemprop="datePublished">2020-01-27</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/25/8.DOM%E7%9A%84%E5%B1%9E%E6%80%A7/" class="title">8.DOM的属性</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-25T07:34:14.215Z" itemprop="datePublished">2020-01-25</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-10.Event事件" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      10.Event事件
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/" class="article-date">
+	  <time datetime="2020-01-27T09:44:31.705Z" itemprop="datePublished">2020-01-27</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Event%E4%BA%8B%E4%BB%B6/" rel="tag">Event事件</a>, <a class="article-tag-link" href="/tags/js%E5%9F%BA%E7%A1%80/" rel="tag">js基础</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2.5k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 11(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="event事件"><a class="markdownIt-Anchor" href="#event事件"></a> Event事件</h3>
+<blockquote>
+<h5 id="event事件类型"><a class="markdownIt-Anchor" href="#event事件类型"></a> Event事件类型</h5>
+<blockquote>
+<p>change   修改事件<br>
+error    错误事件<br>
+load    加载事件<br>
+reset  重设事件<br>
+resize  重新修改大小事件<br>
+select  选择文字事件<br>
+submit  提交事件<br>
+unload  卸载事件<br>
+scroll  滚动条事件</p>
+</blockquote>
+</blockquote>
+<h4 id="鼠标事件"><a class="markdownIt-Anchor" href="#鼠标事件"></a> 鼠标事件</h4>
+<ul>
+<li>
+<h6 id="mouseeventuieventevent-event称为事件基类"><a class="markdownIt-Anchor" href="#mouseeventuieventevent-event称为事件基类"></a> MouseEvent–&gt;UIEvent–&gt;Event  Event称为事件基类</h6>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>,clickHandler);        <span class="comment">//dom的click 监听事件</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params">e</span>)</span>&#123;                               <span class="comment">//事件函数</span></span><br><span class="line">            <span class="built_in">console</span>.log(e);                                     <span class="comment">//这里的e相当于document</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> evt=<span class="keyword">new</span> InputEvent(<span class="string">"click"</span>);</span><br><span class="line">        <span class="built_in">document</span>.dispatchEvent(evt);                         <span class="comment">//发布后的e为evt</span></span><br></pre></td></tr></table></figure>
+<h4 id="change"><a class="markdownIt-Anchor" href="#change"></a> change</h4>
+<ul>
+<li>
+<h5 id="change是修改事件主要用于表单元素当表单元素被修改时失去焦点收到事件"><a class="markdownIt-Anchor" href="#change是修改事件主要用于表单元素当表单元素被修改时失去焦点收到事件"></a> change是修改事件，主要用于表单元素，当表单元素被修改时，失去焦点收到事件</h5>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user=<span class="built_in">document</span>.getElementById(<span class="string">"user"</span>);</span><br><span class="line">        <span class="keyword">var</span> man=<span class="built_in">document</span>.getElementById(<span class="string">"man"</span>);</span><br><span class="line">        <span class="keyword">var</span> city=<span class="built_in">document</span>.getElementById(<span class="string">"city"</span>);</span><br><span class="line">        city.addEventListener(<span class="string">"change"</span>,changeHandler);     <span class="comment">//给city添加change事件   </span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">changeHandler</span>(<span class="params">e</span>)</span>&#123;                        </span><br><span class="line">            <span class="built_in">console</span>.log(e.currentTarget===<span class="keyword">this</span>);            </span><br><span class="line">            <span class="built_in">console</span>.log(e.target);<span class="comment">//目标元素 可视元素</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.selectedOptions);             <span class="comment">//打印当前下下拉选项</span></span><br><span class="line">            city.selectedIndex <span class="comment">//下拉菜单被选的索引</span></span><br><span class="line">            city.selectedOptions <span class="comment">//下拉菜单中被选的option标签列表</span></span><br><span class="line">            <span class="keyword">var</span> selectStr=<span class="built_in">Array</span>.from(<span class="keyword">this</span>.selectedOptions).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">value,item</span>)</span>&#123;         <span class="comment">//将所选取的元素转换为数组进行归并存放到selectStr中</span></span><br><span class="line">                    <span class="keyword">return</span> value+(value.length===<span class="number">0</span> ? <span class="string">""</span> :<span class="string">","</span>)+item.textContent;                 <span class="comment">//长度为0时加空字符串，不为0时加，将元素通过字符串的形式打印</span></span><br><span class="line">            &#125;,<span class="string">""</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(selectStr);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="submit-reset"><a class="markdownIt-Anchor" href="#submit-reset"></a> submit &amp;&amp; reset</h3>
+<ul>
+<li>
+<h5 id="submit-reset-是表单事件只能作用于表单的事件类型"><a class="markdownIt-Anchor" href="#submit-reset-是表单事件只能作用于表单的事件类型"></a> submit &amp;&amp; reset 是表单事件，只能作用于表单的事件类型</h5>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form=<span class="built_in">document</span>.querySelector(<span class="string">"form"</span>);</span><br><span class="line">        <span class="keyword">var</span> city=<span class="built_in">document</span>.getElementById(<span class="string">"city"</span>);</span><br><span class="line">        <span class="keyword">var</span> citySelect=<span class="built_in">document</span>.getElementById(<span class="string">"citySelect"</span>);</span><br><span class="line">        <span class="comment">// 提交表单和重置表单</span></span><br><span class="line">        form.addEventListener(<span class="string">"submit"</span>,submitHandler);</span><br><span class="line">        form.addEventListener(<span class="string">"reset"</span>,submitHandler);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">submitHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> selectStr=<span class="built_in">Array</span>.from(city.selectedOptions).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">value,item</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> value+(value.length===<span class="number">0</span> ? <span class="string">""</span> :<span class="string">","</span>)+item.textContent;</span><br><span class="line">            &#125;,<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// 隐藏的文本在这里设置value,提交submit时,没有name的表单不会被提交</span></span><br><span class="line">            citySelect.value=selectStr;</span><br><span class="line">            <span class="built_in">console</span>.log(selectStr);</span><br><span class="line">            <span class="comment">// e.preventDefault();</span></span><br><span class="line">            <span class="comment">// console.log(e.type);</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="resize"><a class="markdownIt-Anchor" href="#resize"></a> resize</h3>
+<ul>
+<li>
+<h5 id="resize-重设大小主要针对window的事件"><a class="markdownIt-Anchor" href="#resize-重设大小主要针对window的事件"></a> resize 重设大小主要针对window的事件</h5>
+</li>
+<li>
+<h5 id="窗口被改变大小值事件被触发"><a class="markdownIt-Anchor" href="#窗口被改变大小值事件被触发"></a> 窗口被改变大小值，事件被触发</h5>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>,resizeHandler);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">resizeHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> scale=<span class="built_in">document</span>.documentElement.clientWidth/screen.width;</span><br><span class="line">            <span class="built_in">document</span>.documentElement.style.fontSize=<span class="number">100</span>*scale+<span class="string">"px"</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="select"><a class="markdownIt-Anchor" href="#select"></a> select</h3>
+<ul>
+<li>
+<h5 id="select-文本选择事件-主要针对于input或者textarea中文本选择"><a class="markdownIt-Anchor" href="#select-文本选择事件-主要针对于input或者textarea中文本选择"></a> select 文本选择事件  主要针对于input或者textArea中文本选择</h5>
+</li>
+<li>
+<h5 id="与下拉菜单没有关系主要是选择文本框中的文本内容时被触发"><a class="markdownIt-Anchor" href="#与下拉菜单没有关系主要是选择文本框中的文本内容时被触发"></a> 与下拉菜单没有关系，主要是选择文本框中的文本内容时被触发</h5>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user=<span class="built_in">document</span>.getElementById(<span class="string">"user"</span>);</span><br><span class="line">        user.addEventListener(<span class="string">"select"</span>,selectHandler);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">selectHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// user.selectionStart</span></span><br><span class="line">            <span class="comment">// user.selectionEnd</span></span><br><span class="line">            <span class="comment">// user.selectionDirection</span></span><br><span class="line">            <span class="comment">// console.log(user.selectionStart,user.selectionEnd, user.selectionDirection)</span></span><br><span class="line">            user.value=user.value.slice(<span class="number">0</span>,user.selectionStart)+user.value.slice(user.selectionStart,user.selectionEnd).toUpperCase()+user.value.slice(user.selectionEnd)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="event事件之加载和滚动条"><a class="markdownIt-Anchor" href="#event事件之加载和滚动条"></a> Event事件之加载和滚动条</h2>
+<h3 id="scroll"><a class="markdownIt-Anchor" href="#scroll"></a> scroll</h3>
+<ul>
+<li>
+<h5 id="scroll-滚动事件-是所有具备滚动条的容器都可以侦听的"><a class="markdownIt-Anchor" href="#scroll-滚动事件-是所有具备滚动条的容器都可以侦听的"></a> scroll 滚动事件  是所有具备滚动条的容器都可以侦听的</h5>
+</li>
+<li>
+<h5 id="滚轮滚动不是滚动条事件触发方式间接触发滚动条事件"><a class="markdownIt-Anchor" href="#滚轮滚动不是滚动条事件触发方式间接触发滚动条事件"></a> 滚轮滚动不是滚动条事件触发方式，间接触发滚动条事件</h5>
+</li>
+<li>
+<h5 id="滚动条位置的改变才会触发滚动条事件"><a class="markdownIt-Anchor" href="#滚动条位置的改变才会触发滚动条事件"></a> 滚动条位置的改变才会触发滚动条事件</h5>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div.addEventListener(<span class="string">"scroll"</span>,scrollHandler);</span><br><span class="line">         </span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">scrollHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e.stopPropagation();<span class="comment">//如果要设置flash中的滚动条不改变外部的滚动条</span></span><br><span class="line"> <span class="comment">// 需要在flash的标签上设置停止冒泡</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="unload"><a class="markdownIt-Anchor" href="#unload"></a> unload</h3>
+<ul>
+<li>
+<h5 id="unload-卸载-原有的页面在刷新原有的页面会被卸载掉这个时候触发事件"><a class="markdownIt-Anchor" href="#unload-卸载-原有的页面在刷新原有的页面会被卸载掉这个时候触发事件"></a> unload 卸载 原有的页面在刷新，原有的页面会被卸载掉，这个时候触发事件</h5>
+</li>
+<li>
+<h5 id="unload-事件本身也不靠谱-关闭浏览器标签时被触发关闭浏览器窗口时不被触发"><a class="markdownIt-Anchor" href="#unload-事件本身也不靠谱-关闭浏览器标签时被触发关闭浏览器窗口时不被触发"></a> unload 事件本身也不靠谱  关闭浏览器标签时被触发，关闭浏览器窗口时不被触发</h5>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>,clickHandler);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            location.href=<span class="string">"http://www.163.com"</span>;</span><br><span class="line">            <span class="comment">// location.assign("http://www.163.com");</span></span><br><span class="line">            <span class="comment">// location.replace("http://www.163.com");</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">"unload"</span>,unloadHandler);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">unloadHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            e.preventDefault();</span><br><span class="line">            <span class="comment">// console.log(e);</span></span><br><span class="line">            open(<span class="string">"http://www.qq.com"</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="load-error"><a class="markdownIt-Anchor" href="#load-error"></a> load  error</h3>
+<ul>
+<li>
+<h4 id="load-加载事件"><a class="markdownIt-Anchor" href="#load-加载事件"></a> load 加载事件</h4>
+</li>
+<li>
+<h4 id="error-错误比如地址错误造成的加载失败会触发"><a class="markdownIt-Anchor" href="#error-错误比如地址错误造成的加载失败会触发"></a> error 错误，比如地址错误造成的加载失败会触发</h4>
+</li>
+</ul>
+<blockquote>
+<h4 id="为什么加载图片"><a class="markdownIt-Anchor" href="#为什么加载图片"></a> 为什么加载图片</h4>
+<blockquote>
+<p><strong>图片是以个异步加载的过程</strong><br>
+<strong>给window增加load事件，页面中所有的元素被加载完成后触发该事件</strong><br>
+<strong>所有的元素都加载完成，包括图片</strong></p>
+</blockquote>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">             <span class="keyword">var</span> img=<span class="built_in">document</span>.querySelector(<span class="string">"img"</span>);</span><br><span class="line">              <span class="built_in">console</span>.log(img.width);</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">init();</span><br><span class="line">         <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="keyword">var</span> arr = [];                              </span><br><span class="line">             <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; <span class="number">80</span>; i++) &#123;          <span class="comment">//从第2张开始到第79张  </span></span><br><span class="line">                 <span class="keyword">var</span> img = <span class="keyword">new</span> Image();              <span class="comment">//声明一个图片对象</span></span><br><span class="line">                 img.src = <span class="string">"./img/"</span> + i + <span class="string">"-.jpg"</span>;   <span class="comment">//设置图片的地址</span></span><br><span class="line">                 img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;          <span class="comment">//当图片都加载完时执行此函数</span></span><br><span class="line">                     arr.push(<span class="keyword">this</span>);                 <span class="comment">//将当前遍历到的图片存放到arr数组中</span></span><br><span class="line">                     <span class="keyword">if</span> (arr.length &gt;= <span class="number">78</span>) &#123;         <span class="comment">//当所有图片都加载完时 执行load函数</span></span><br><span class="line">                         loadFinish(arr);            </span><br><span class="line">                     &#125;</span><br><span class="line">                     <span class="built_in">document</span>.body.appendChild(img); <span class="comment">//将图片添加到body中</span></span><br><span class="line">                 &#125;</span><br><span class="line">               </span><br><span class="line">             &#125;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">"bbb"</span>);                     <span class="comment">//先执行此条语句，因为img.onload没有加载完成</span></span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line">         <span class="function"><span class="keyword">function</span> <span class="title">loadFinish</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">             arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">                 <span class="built_in">console</span>.log(item.src);             <span class="comment">//打印当前图片的地址</span></span><br><span class="line">             &#125;)</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="图片加载1"><a class="markdownIt-Anchor" href="#图片加载1"></a> 图片加载1</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num=<span class="number">2</span>,arr=[];</span><br><span class="line">        init();</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> img=<span class="keyword">new</span> Image();</span><br><span class="line">            img.src=<span class="string">"./img/"</span>+num+<span class="string">"-.jpg"</span>;</span><br><span class="line">            img.addEventListener(<span class="string">"load"</span>,loadHanlder);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">loadHanlder</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            arr.push(<span class="keyword">this</span>);                     <span class="comment">//将当前元素储存到arr中</span></span><br><span class="line">            num++;          </span><br><span class="line">            <span class="keyword">if</span>(num&gt;<span class="number">79</span>)&#123;                         <span class="comment">//循环79次</span></span><br><span class="line">                loadFinish(arr);                <span class="comment">//执行加载完成函数</span></span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> img=<span class="keyword">new</span> Image();                            <span class="comment">//新建一个图片对象</span></span><br><span class="line">            img.src=<span class="string">"./img/"</span>+num+<span class="string">"-.jpg"</span>;                   <span class="comment">//路径地址</span></span><br><span class="line">            img.addEventListener(<span class="string">"load"</span>,loadHanlder)        <span class="comment">//给img创建一个加载监听事件</span></span><br><span class="line">            img.addEventListener(<span class="string">"error"</span>,errorHanlder);     </span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(img);                 <span class="comment">//将img添加到body中</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">errorHanlder</span>(<span class="params">e</span>)</span>&#123;                           </span><br><span class="line">            <span class="built_in">console</span>.log(e);                                 </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">loadFinish</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">            arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;                         <span class="comment">//循环所有数组中的元素</span></span><br><span class="line">                <span class="built_in">console</span>.log(item.src);                          <span class="comment">//打印所有元素地址</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="图片加载2"><a class="markdownIt-Anchor" href="#图片加载2"></a> 图片加载2</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> num=<span class="number">2</span>,arr=[]</span><br><span class="line">        init();</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> img=<span class="keyword">new</span> Image();                                <span class="comment">//创建一个img对象</span></span><br><span class="line">            img.addEventListener(<span class="string">"load"</span>,loadHandler);           <span class="comment">//给img添加一个加载监听事件</span></span><br><span class="line">                                                                <span class="comment">//每次加载完一个图片都会再次调用此事件</span></span><br><span class="line">            img.src=<span class="string">"./img/"</span>+num+<span class="string">"-.jpg"</span>;                       <span class="comment">//设置图片地址</span></span><br><span class="line">            </span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">loadHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// 把当时加载图片复制一份放在数组中,这个复制的图片就是当时这个地址的图片</span></span><br><span class="line">            arr.push(<span class="keyword">this</span>.cloneNode(<span class="literal">false</span>));                   <span class="comment">//复制当前img节点push到arr数组中</span></span><br><span class="line">            num++;                                              </span><br><span class="line">            <span class="keyword">if</span>(num&gt;<span class="number">79</span>)&#123;                                        </span><br><span class="line">                <span class="keyword">this</span>.removeEventListener(<span class="string">"load"</span>,loadHandler); <span class="comment">//当循环次数大于79时移除此事件</span></span><br><span class="line">                loadFinish(arr);                              <span class="comment">//并加载此函数</span></span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>.src=<span class="string">"./img/"</span>+num+<span class="string">"-.jpg"</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">loadFinish</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">            arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(item.src);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="图片的预加载封装"><a class="markdownIt-Anchor" href="#图片的预加载封装"></a> 图片的预加载封装</h3>
+<p><strong>工具类部分</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"> loadImage:<span class="function"><span class="keyword">function</span>(<span class="params">arr,callback,basePath</span>)</span>&#123;    <span class="comment">//第一个参数为图片名数组  第二个参数为执行函数  第三个参数为路径地址</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">typeof</span> basePath===<span class="string">"string"</span>)&#123;           </span><br><span class="line">                arr=arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> basePath+item;                   <span class="comment">//遍历当前数组并给每个元素添加路径名  成为一个完整的图片路径</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> img=<span class="keyword">new</span> Image();                                     <span class="comment">//声明一个图片对象</span></span><br><span class="line">            img.addEventListener(<span class="string">"load"</span>,<span class="keyword">this</span>.loadHandler);          <span class="comment">//给图片添加加载事件</span></span><br><span class="line">            img.addEventListener(<span class="string">"error"</span>,<span class="keyword">this</span>.loadHandler);         <span class="comment">//给图片添加错误事件</span></span><br><span class="line">            img.resultArr=[];</span><br><span class="line">            img.num=<span class="number">0</span>;</span><br><span class="line">            img.arr=arr;</span><br><span class="line">            img.self=<span class="keyword">this</span>;</span><br><span class="line">            img.callback=callback;</span><br><span class="line">            img.src=arr[<span class="number">0</span>];</span><br><span class="line">        &#125;,</span><br><span class="line">        loadHandler:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(e.type!==<span class="string">"error"</span>)<span class="keyword">this</span>.resultArr.push(<span class="keyword">this</span>.cloneNode(<span class="literal">false</span>));    <span class="comment">//若不出现错误  将此节点元素浅复制给数组</span></span><br><span class="line">            <span class="keyword">this</span>.num++;                     </span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.num&gt;<span class="keyword">this</span>.arr.length<span class="number">-1</span>)&#123;                                    <span class="comment">//循环数组的长度</span></span><br><span class="line">                <span class="keyword">this</span>.removeEventListener(<span class="string">"load"</span>,<span class="keyword">this</span>.self.loadHandler);        <span class="comment">//移除监听函数</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.callback)&#123;                                            </span><br><span class="line">                    <span class="keyword">this</span>.callback(<span class="keyword">this</span>.resultArr.slice());</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">var</span> evt=<span class="keyword">new</span> Event(<span class="string">"Load_image_Finish"</span>);</span><br><span class="line">                    evt.resultArr=<span class="keyword">this</span>.resultArr;</span><br><span class="line">                    <span class="built_in">document</span>.dispatchEvent(evt);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.resultArr=<span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">this</span>.self=<span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">this</span>.callback=<span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">this</span>.arr=<span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>.src=<span class="keyword">this</span>.arr[<span class="keyword">this</span>.num];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><strong>html的js部分</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">      <span class="keyword">var</span> arr=[];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">2</span>;i&lt;<span class="number">80</span>;i++)&#123;</span><br><span class="line">            arr.push(i+<span class="string">"-.jpg"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 函数的参数</span></span><br><span class="line">        <span class="comment">// 必须填写的写在前面,不是必须填写的写在后面</span></span><br><span class="line">        <span class="comment">// document.addEventListener("Load_image_Finish",finishHandler)</span></span><br><span class="line">        Utils.loadImage(arr,finishImage,<span class="string">"./img/"</span>);</span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">        function finishHandler(e)&#123;</span></span><br><span class="line"><span class="comment">            console.log(e.resultArr);</span></span><br><span class="line"><span class="comment">        &#125; */</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">finishImage</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(arr);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="聚焦与input事件"><a class="markdownIt-Anchor" href="#聚焦与input事件"></a> 聚焦与input事件</h3>
+<p><strong>FocusEvent事件</strong></p>
+<ul>
+<li>FocusEvent事件 获得焦距和失去焦距 主要针对所有表单元素和超链接</li>
+<li>focusin  focusout</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user=<span class="built_in">document</span>.getElementById(<span class="string">"user"</span>);</span><br><span class="line">        <span class="keyword">var</span> user1=<span class="built_in">document</span>.getElementById(<span class="string">"user1"</span>);</span><br><span class="line">        <span class="comment">// 获得焦距</span></span><br><span class="line">        user.addEventListener(<span class="string">"focusin"</span>,focusHandler);</span><br><span class="line">        <span class="comment">// 失去焦距</span></span><br><span class="line">        user.addEventListener(<span class="string">"focusout"</span>,focusHandler);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">focusHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// e.relatedTarget  上一个失焦对象</span></span><br><span class="line">            <span class="built_in">console</span>.log(e);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>InputEvent 输入事件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user=<span class="built_in">document</span>.getElementById(<span class="string">"user"</span>);</span><br><span class="line">       user.addEventListener(<span class="string">"input"</span>,inputHandler);</span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">inputHandler</span>(<span class="params">e</span>)</span>&#123;   </span><br><span class="line">           <span class="built_in">console</span>.log(e);                         <span class="comment">//每输入新的内容控制台都会打印    </span></span><br><span class="line">           <span class="comment">// e.data: "s"  本次输入的内容</span></span><br><span class="line">           <span class="comment">// e.isComposing: false  输入法是否启动</span></span><br><span class="line">           <span class="comment">// e.inputType 输入的类型</span></span><br><span class="line">           <span class="comment">// insertCompositionText 输入插入</span></span><br><span class="line">           <span class="comment">// historyUndo 历史返回</span></span><br><span class="line">           <span class="comment">// insertText  插入文本</span></span><br><span class="line">           <span class="comment">// deleteContentBackward 退格删除（删除前一个）</span></span><br><span class="line">           <span class="comment">// deleteContentForward  delete删除（删除后一个）</span></span><br><span class="line">           <span class="comment">// deleteByCut 剪切删除</span></span><br><span class="line">           <span class="comment">// insertFromPaste 粘贴插入</span></span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="节流"><a class="markdownIt-Anchor" href="#节流"></a> 节流</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">init();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> user=<span class="built_in">document</span>.getElementById(<span class="string">"user"</span>);            <span class="comment">//获取user元素（input）</span></span><br><span class="line">     user.addEventListener(<span class="string">"input"</span>,inputHandler);        <span class="comment">//给user添加input事件   </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// this  节流</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.ids) <span class="keyword">return</span>;                            </span><br><span class="line">    <span class="keyword">this</span>.ids=setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;             </span><br><span class="line">        clearTimeout(elem.ids);                     </span><br><span class="line">        elem.ids=<span class="literal">null</span>;                              </span><br><span class="line">        showValue(elem.value);</span><br><span class="line">    &#125;,<span class="number">500</span>,<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showValue</span>(<span class="params">txt</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(txt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="按键事件防抖"><a class="markdownIt-Anchor" href="#按键事件防抖"></a> 按键事件(防抖）</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  document.addEventListener("keydown",keyHandler);</span></span><br><span class="line"><span class="comment">         document.addEventListener("keyup",keyHandler);</span></span><br><span class="line"><span class="comment">         var type="";</span></span><br><span class="line"><span class="comment">         function keyHandler(e)&#123;</span></span><br><span class="line"><span class="comment">             if(type===e.type)return;</span></span><br><span class="line"><span class="comment">            type=e.type; </span></span><br><span class="line"><span class="comment">         //    code: "KeyS"  按下的键</span></span><br><span class="line"><span class="comment">         // key: "a"  按下的键</span></span><br><span class="line"><span class="comment">         // keyCode: 16 键码   </span></span><br><span class="line"><span class="comment">         //       左37  上38  右39  下40</span></span><br><span class="line"><span class="comment">         // which: 65 等同于keyCode</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">         console.log(e);</span></span><br><span class="line"><span class="comment">         &#125; */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> hero, type = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">var</span> x = <span class="number">0</span>, y = <span class="number">0</span>, num = <span class="number">0</span>, time = <span class="number">0</span>,speed=<span class="number">1</span>;</span><br><span class="line">        init();</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            hero = <span class="built_in">document</span>.querySelector(<span class="string">"div"</span>);                               <span class="comment">//获取div元素命名为hero</span></span><br><span class="line">            </span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">"keydown"</span>, keyHandler);                   <span class="comment">//添加按键按下监听事件</span></span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">"keyup"</span>, keyHandler);                     <span class="comment">//添加按键抬起监听事件</span></span><br><span class="line">            setInterval(animation, <span class="number">16</span>);                                         <span class="comment">//设置定时器</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">keyHandler</span>(<span class="params">e</span>) </span>&#123;                                                </span><br><span class="line">            <span class="keyword">if</span> (e.type === <span class="string">"keydown"</span>)&#123;                                          <span class="comment">//当按键按下时</span></span><br><span class="line">                type = e.keyCode;                                               <span class="comment">//将当前按键的keycode储存在type中</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (e.type === <span class="string">"keyup"</span>)&#123;                                       <span class="comment">//当按键抬起时</span></span><br><span class="line">                type = <span class="number">100</span>;                                                     <span class="comment">//不做任何操作</span></span><br><span class="line">                hero.style.backgroundPositionX=<span class="string">"0px"</span>;                           <span class="comment">//背景图x轴定位为0</span></span><br><span class="line">                num=<span class="number">0</span>;                                                                                                                      </span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">switch</span> (e.keyCode) &#123;                                                <span class="comment">//将keycode码设为开关</span></span><br><span class="line">                <span class="keyword">case</span> <span class="number">37</span>:</span><br><span class="line">                    hero.style.backgroundPositionY = <span class="string">"-33px"</span>;                   <span class="comment">//通过keycode判断背景图y轴的位置</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">38</span>:</span><br><span class="line">                    hero.style.backgroundPositionY = <span class="string">"-99px"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">39</span>:</span><br><span class="line">                    hero.style.backgroundPositionY = <span class="string">"-66px"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">40</span>:</span><br><span class="line">                    hero.style.backgroundPositionY = <span class="string">"0px"</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">animation</span>(<span class="params"></span>) </span>&#123;                                                  <span class="comment">//执行操作函数</span></span><br><span class="line">            <span class="keyword">if</span> (type &lt; <span class="number">37</span> || type &gt; <span class="number">40</span>) <span class="keyword">return</span>;                                 <span class="comment">//判断keycode的数值</span></span><br><span class="line">            heroMove();                                                         <span class="comment">//调用移动方法</span></span><br><span class="line">            changeSkin();                                                       <span class="comment">//皮肤切换函数</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 防抖</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">changeSkin</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            time--;</span><br><span class="line">            <span class="keyword">if</span> (time &gt; <span class="number">0</span>) <span class="keyword">return</span>;                                               <span class="comment">//每次15次返回一次</span></span><br><span class="line">            time = <span class="number">15</span>;                  </span><br><span class="line">            <span class="keyword">if</span> (++num &gt; <span class="number">3</span>) num = <span class="number">0</span>;</span><br><span class="line">            hero.style.backgroundPositionX = <span class="number">-32</span> * num + <span class="string">"px"</span>;                  <span class="comment">//切换行走时的皮肤</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">heroMove</span>(<span class="params"></span>) </span>&#123;                                       </span><br><span class="line">            <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">37</span>:</span><br><span class="line">                    x -= speed;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">38</span>:</span><br><span class="line">                    y -= speed;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">39</span>:</span><br><span class="line">                    x += speed;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">40</span>:</span><br><span class="line">                    y += speed;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            hero.style.left = x + <span class="string">"px"</span>;                                     <span class="comment">//左右移动时每次移动的像素</span></span><br><span class="line">            hero.style.top = y + <span class="string">"px"</span>;                                      <span class="comment">//上下移动时每次移动的像素</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="滚轮事件"><a class="markdownIt-Anchor" href="#滚轮事件"></a> 滚轮事件</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  <span class="built_in">document</span>.addEventListener(<span class="string">"DOMMouseScroll"</span>,mouseHandler);   </span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">"mousewheel"</span>,mouseHandler);   </span><br><span class="line">        <span class="keyword">var</span> div=<span class="built_in">document</span>.querySelector(<span class="string">"div"</span>);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">mouseHandler</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> detail;</span><br><span class="line">            <span class="keyword">if</span>(e.detail!==<span class="number">0</span>)detail=e.detail;</span><br><span class="line">            <span class="keyword">else</span> detail=e.deltaY&lt;<span class="number">0</span> ? <span class="number">-3</span> : <span class="number">3</span>;</span><br><span class="line">            <span class="comment">// console.log(detail);</span></span><br><span class="line">            div.style.top=div.offsetTop+detail+<span class="string">"px"</span>;</span><br><span class="line">            <span class="comment">// e.detail: -3  向上  火狐</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">            deltaX: -0</span></span><br><span class="line"><span class="comment">            deltaY: -125</span></span><br><span class="line"><span class="comment">            deltaZ: 0</span></span><br><span class="line"><span class="comment">            detail: 0</span></span><br><span class="line"><span class="comment">            wheelDelta: 150</span></span><br><span class="line"><span class="comment">            wheelDeltaX: 0</span></span><br><span class="line"><span class="comment">            wheelDeltaY: 150 */</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://cooli-willson.github.io/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/" title="10.Event事件" target="_blank" rel="external">https://cooli-willson.github.io/2020/01/27/10.Event%E4%BA%8B%E4%BB%B6/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://cooli-willson.github.io/" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://cooli-willson.github.io/" target="_blank"><span class="text-dark">wilson</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>h5前端工作者</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/01/27/%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD/" title="拖拽div"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Facebook" data-toggle=tooltip data-placement=top><i class="icon icon-facebook"></i></a></li>
+        
+        <li><a href="https://cooli-willson.github.io/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/null" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2020 Wilson
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+    <script>
+(function ($) {
+    $('.search-form').on('submit', function (e) {
+        var keyword = $('.search-form-input[name="wd"]').val();
+        window.location = 'https://www.baidu.com/s?wd=site:cooli-willson.github.io ' + keyword;
+        return false;
+    });
+})(jQuery);
+</script>
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '3RekpJKpFX6SzOjLYMI6l4zi-gzGzoHsz',
+    appKey: 'Aeo3mH4zkWGoNQNCjQYlswop',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>
